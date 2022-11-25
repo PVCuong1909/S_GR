@@ -1,0 +1,1912 @@
+#include<iostream>
+#include<stdio.h>
+#include"string.h"
+#include"quanlysach.h"
+#include"muontrasach.h"
+#include"quanlydocgia.h"
+
+// Khai báo tĩnh số lượng độc giả trong thư viện
+#define MaxSach 10000
+using namespace std;
+// Khai báo các thông tin quản lí sách
+char ISBN[MaxSach][30];
+char TenSach[MaxSach][30];
+char TacGia[MaxSach][30];
+char NhaXB[MaxSach][30];
+char NamXB[MaxSach][30];
+char TheLoai[MaxSach][30];
+char GiaSach[MaxSach][30];
+int SoLuong[MaxSach];
+
+int s = 0; //Biến đếm số lượng sách trong thư viện.
+
+
+/********************************************** Hàm nhập thông tin ban đầu cho sách ******************************************************/
+/*
+Nhận vào: ISBN[MaxSach][30];
+		  TenSach[MaxSach][30];
+		  TacGia[MaxSach][30];
+		  NhaXB[MaxSach][30];
+		  NamXB[MaxSach][30];
+		  TheLoai[MaxSach][30];
+		  GiaSach[MaxSach][30];
+		  SoLuong[MaxSach];
+ */
+// Trả về: Thông tin ban đầu của sách.
+
+void NhapSach()
+{
+	while (1)
+	{
+		if (s >= MaxSach)
+				cout<<"Bo nho khong du. Vui long ngung cap nhat doc gia!!!";
+		else
+		while (s < MaxSach)
+		{
+
+			cout<<"\nThong tin quyen sach thu: ";
+			cout<<s+1;
+			fflush(stdin);
+
+			// Them ISBN cua quyen sach:
+			cout<<"\n ISBN quyen sach: ";
+			gets(ISBN[s]);
+
+			// Them ten quyen sach:
+			cout<<" Ten quyen sach: ";
+			gets(TenSach[s]);
+
+			// Them ten tac gia cua quyen sach:
+			cout<<" Ten tac gia cua quyen sach: ";
+			gets(TacGia[s]);
+
+			// Them nha xuat ban cua quyen sach:
+			cout<<" Nha xuat ban cua quyen sach: ";
+			gets(NhaXB[s]);
+
+			// Them nam xuat ban cua quyen sach:
+			cout<<" Nam xuat ban cua quyen sach: ";
+			gets(NamXB[s]);
+
+			// Them the loai cua quyen sach:
+			cout<<" The loai cua quyen sach: ";
+			gets(TheLoai[s]);
+
+			// Them gia sach cua quyen sach:
+			cout<<" Gia sach cua quyen sach: ";
+			gets(GiaSach[s]);
+
+			// Them so luong cua quyen sach:
+			cout<<" So luong cua quyen sach: ";
+			scanf("%d", &SoLuong[s]);
+
+			s++;
+			break;
+		}
+		if (s >= 3)
+			break;
+	}
+}
+/********************************************************************************************************************************/
+
+
+/***************************************************** Hàm xem thông tin sách ******************************************************/
+/*
+Nhận vào : ISBN[MaxSach][30];
+TenSach[MaxSach][30];
+TacGia[MaxSach][30];
+NhaXB[MaxSach][30];
+NamXB[MaxSach][30];
+TheLoai[MaxSach][30];
+GiaSach[MaxSach][30];
+SoLuong[MaxSach];
+*/
+// Trả về: Thông tin ban đầu của sách.
+void XemSach()
+{
+	if (s <= 0)
+	{
+		cout<<"Danh sach cac quyen sach trong. Hay tien hanh cap nhat!!!";
+	}
+	else
+	{
+		int i = 0;
+		while (i < s)
+		{
+			cout<<"\nThong tin quyen sach thu  \n:";
+			cout<<i + 1;
+
+			// Xem ISBN cua sach:
+			cout<<"\n ISBN cua quyen sach :";
+			puts(ISBN[i]);
+
+			// Xem ten cua quyen sach:
+			cout<<" Ten cua quyen sach :";
+			puts(TenSach[i]);
+
+			// Xem ten cua tac gia:
+			cout<<" Ten tac gia cua quyen sach :";
+			puts(TacGia[i]);
+
+			// Xem nha xuat ban cua quyen sach:
+			cout<<" Nha xuat ban cua quyen sach :";
+			puts(NhaXB[i]);
+
+			// Xem nam xuat ban cua quyen sach:
+			cout<<" Nam xuat ban cua quyen sach :";
+			puts(NamXB[i]);
+
+			// Xem the loai cua quyen sach:
+			cout<<" The loai cua quyen sach :";
+			puts(TheLoai[i]);
+
+			// Xem gia cua quyen sach:
+			cout<<" Gia cua quyen sach :";
+			puts(GiaSach[i]);
+
+			// Xem so luong cua quyen sach:
+			cout<<" So luong cua quyen sach la: ";
+			cout<< i + 1, SoLuong[i];
+			
+			i++;
+		}
+	}
+}
+/********************************************************************************************************************************/
+
+
+/******************************************************** Hàm thêm sách ******************************************************/
+/*
+Nhận vào: ISBN[MaxSach][30];
+		  TenSach[MaxSach][30];
+		  TacGia[MaxSach][30];
+		  NhaXB[MaxSach][30];
+		  NamXB[MaxSach][30];
+		  TheLoai[MaxSach][30];
+		  GiaSach[MaxSach][30];
+		  SoLuong[MaxSach];
+ */
+// Trả về: Thông tin của sách.
+void ThemSach()
+{
+	while (1)
+	{
+		cout<<"\n\t------------------Menu lenh Cap nhat Thong tin sach--------------\n";
+		cout<<" \t\t220.Thoat cap nhat .\n";
+		cout<<" \t\t221.Cap nhat thong tin sach.\n";
+		cout<<"\n\t-----------------------------------------------------------------";
+
+		int chon;
+		cout<<"\n\nChon: ";
+		scanf("%d", &chon);
+		if (chon != 220 && chon != 221)
+			cout<<"Chuc nang khong ton tai. Vui long chon chuc nang khac!!!";
+
+		if (chon == 220)
+			break;
+
+		if (chon == 221)
+		{
+			if (s >= MaxSach)
+				cout<<"Bo nho khong du. Vui long ngung cap nhat doc gia!!!";
+			while (s<MaxSach)
+			{
+
+				cout<<"Thong tin quyen sach: " ;
+				cout<< s + 1;
+				fflush(stdin);
+
+				// Them ISBN cua quyen sach:
+				cout<<" ISBN quyen sach: ";
+				gets(ISBN[s]);
+				
+				// Them ten quyen sach:
+				cout<<" Ten quyen sach: ";
+				gets(TenSach[s]);
+
+				// Them ten tac gia cua quyen sach:
+				cout<<" Ten tac gia cua quyen sach: ";
+				gets(TacGia[s]);
+
+				// Them nha xuat ban cua quyen sach:
+				cout<<" Nha xuat ban cua quyen sach: ";
+				gets(NhaXB[s]);
+
+				// Them nam xuat ban cua quyen sach:
+				cout<<" Nam xuat ban cua quyen sach: ";
+				gets(NamXB[s]);
+
+				// Them the loai cua quyen sach:
+				cout<<" The loai cua quyen sach: ";
+				gets(TheLoai[s]);
+
+				// Them gia sach cua quyen sach:
+				cout<<" Gia sach cua quyen sach: ";
+				gets(GiaSach[s]);
+
+				// Them so luong cua quyen sach:
+				cout<<" So luong cua quyen sach: ";
+				scanf("%d", &SoLuong[s]);
+
+				s++;
+				break;
+			}
+		}
+	}
+}
+/********************************************************************************************************************************/
+
+
+
+/********************************************** Hàm sửa thông tin sách ******************************************************/
+
+	//---------------------------------------------- Hàm sửa thông tin sách ------------------------------------------
+// Nhận vào: Số thứ tự của quyển sách cần chỉnh sửa
+// Trả về: Thông tin sửa sách
+void SuaSach(int h)
+{
+
+	if (h >= 0 && h <= s)
+	{
+		cout<<"\n\t---------------Menu lenh con Chinh Sua Thong tin doc gia-------------\n";
+
+		cout<<" \t\t2311.Chinh sua ISBN cua quyen sach.\n";
+		cout<<" \t\t2312.Chinh sua ten sach.\n";
+		cout<<" \t\t2313.Chinh sua tac gia cua quyen saCH.\n";
+		cout<<" \t\t2314.Chinh sua nha xuat ban cua quyen sach.\n";
+		cout<<" \t\t2315.Chinh sua nam xuat ban cua quyen sach.\n";
+		cout<<" \t\t2316.Chinh sua the loai cua quyen sach.\n";
+		cout<<" \t\t2317.Chinh sua gia ban cua quyen sach.\n";
+		cout<<" \t\t2318.Chinh sua so luong cua moi quyen sach.\n";
+
+		cout<<"\n\t--------------------------------------------------------------------";
+
+		int chon;
+		cout<<"\n\nChon muc can chinh sua cua quyen sach thu: ";
+		cout<<h;
+		scanf("%d", &chon);
+
+		if (chon == 2318)
+		{
+			int suaSL;
+			cout<<"Nhap noi dung chinh sua: ";
+			scanf("%d", &suaSL);
+			SoLuong[h - 1] = suaSL;
+		}
+		else
+		{
+			fflush(stdin);
+			char sua[30];
+			cout<<"Nhap noi dung chinh sua: ";
+			gets(sua);
+
+			switch (chon)
+			{
+			case 2311:
+				strcpy(ISBN[h - 1], sua);
+				break;
+			case 2312:
+				strcpy(TenSach[h - 1], sua);
+				break;
+			case 2313:
+				strcpy(TacGia[h - 1], sua);
+				break;
+			case 2314:
+				strcpy(NhaXB[h - 1], sua);
+				break;
+			case 2315:
+				strcpy(NamXB[h - 1], sua);
+				break;
+			case 2316:
+				strcpy(TheLoai[h - 1], sua);
+				break;
+			case 2317:
+				strcpy(GiaSach[h - 1], sua);
+				break;
+			default:
+				cout<<"Muc chinh sua khong ton tai!!!";
+				break;
+			}
+		}
+	}
+	else
+		cout<<"Du lieu thong tin sach can chinh sua khong co!\nVui long thoat, thuc hien lai lenh chinh sua va chon lai so thu tu cua sach!";
+}
+
+	//--------------------------------------- Xem thông tin sách sau khi chỉnh sửa ------------------------------------
+//Nhận vào: Số thứ tụ quyển sách cần chỉnh sửa
+//Trả về: Thông tin quyển sách sau khi chỉnh sửa
+void XemSuaSach(int h)
+{
+	cout<<"\nThong tin quyen sach sau khi duoc chinh sua la: \n";
+	cout<<h;
+
+	// Xem ISBN cua sach:
+	cout<<"\n ISBN cua quyen sach: ";
+	cout<<h;
+	puts(ISBN[h-1]);
+
+	// Xem ten cua quyen sach:
+	cout<<" Ten cua quyen sach: ";
+	cout<<h;
+	puts(TenSach[h-1]);
+
+	// Xem ten cua tac gia:
+	cout<<" Ten tac gia cua quyen sach: ";
+	cout<<h;
+	puts(TacGia[h-1]);
+
+	// Xem nha xuat ban cua quyen sach:
+	cout<<" Nha xuat ban cua quyen sach: ";
+	cout<<h;
+	puts(NhaXB[h-1]);
+
+	// Xem nam xuat ban cua quyen sach:
+	cout<<" Nam xuat ban cua quyen sach: ";
+	cout<<h;
+	puts(NamXB[h-1]);
+
+	// Xem the loai cua quyen sach:
+	cout<<" The loai cua quyen sach: ";
+	cout<<h;
+	puts(TheLoai[h-1]);
+
+	// Xem gia cua quyen sach:
+	cout<<" Gia ban cua quyen sach: ";
+	cout<<h;
+	puts(GiaSach[h-1]);
+
+	// Xem so luong cua quyen sach:
+	cout<<" So luong cua quyen sach thu: ";
+	cout<<h;
+	cout<<"la: ";
+	cout<<SoLuong[h - 1];
+}
+
+		// --------------------------------------- Menu lệnh sửa ----------------------------------------------
+//Nhận vào: Số thứ tự của độc giả cần sửa thông tin
+//Trả về: Menu lệnh quản lí sửa.
+void MenuSuaSach(int h)
+{
+	while (1)
+	{
+		cout<<"\n\t-----------Menu lenh main Chinh Sua Thong tin quyen sach--------------\n";
+
+		cout<<" \t\t230.Thoat chinh sua .\n";
+		cout<<" \t\t231.Tiep tuc chinh sua thong tin quyen sach thu %d.\n", h;
+		cout<<" \t\t232.Xem thong tin quyen sach sau khi chinh sua.\n";
+
+		cout<<"\n\t--------------------------------------------------------------------";
+
+		int chon;
+		cout<<"\n\nChon lenh trong menu main chinh sua: ";
+		scanf("%d", &chon);
+
+		if (chon == 230)
+			break;
+
+		switch (chon)
+		{
+		case 231:
+			SuaSach(h);
+			break;
+		case 232:
+			XemSuaSach(h);
+			break;
+		default:
+			cout<<"Chuc nang khong ton tai. Vui long chon lenh khac!!!";
+			break;
+		}
+	}
+}
+
+/********************************************************************************************************************************/
+
+
+/********************************************************** Xóa sách ***********************************************************/
+void XoaSach(int d)
+{
+	int flag = 0;
+	if (d >= 0 && d < s)
+	{
+		for (int i = d-1; i < s - 1; i++)
+		{
+			// Tien hanh sao chep thong tin cua cac quyen sach sau vao cac quyen sach truoc tai vi tri doc gia bi xoa
+			
+			strcpy(ISBN[i], ISBN[i + 1]);
+
+			strcpy(TenSach[i], TenSach[i + 1]);
+
+			strcpy(TacGia[i], TacGia[i + 1]);
+
+			strcpy(NhaXB[i], NhaXB[i + 1]);
+
+			strcpy(NamXB[i], NamXB[i + 1]);
+
+			strcpy(TheLoai[i], TheLoai[i + 1]);
+
+			strcpy(GiaSach[i], GiaSach[i + 1]);
+
+			SoLuong[i] = SoLuong[i + 1];
+		}
+		s--;
+		flag = 1;
+	}
+	if (flag == 1)
+	{
+		cout<<"\n Danh sach cac quyen sach con sau khi xoa la:\n";
+		XemSach();
+	}
+	else
+		cout<<"Khong the thuc hien xoa. Vui long chon doc quyen sach can xoa khac!!!";
+}
+/********************************************************************************************************************************/
+
+
+/******************************************************* Tìm sách theo ISBN sách *************************************************/
+// Nhận vào: ISBN của quyển sách
+// Trả về: Thông tin quyển sách cần tìm.
+void TimISBN(char IS[25])
+{
+	int flag = 0;
+	for (int i = 0; i < s; i++)
+	{
+		if (strcmp(ISBN[i], IS) == 0)
+		{
+			cout<<"\nThong tin cua quyen sach can tim la:";
+			// Xem ISBN cua sach:
+			cout<<"\n ISBN cua quyen sach :";
+			puts(ISBN[i]);
+
+			// Xem ten cua quyen sach:
+			cout<<" Ten cua quyen sach :";
+			puts(TenSach[i]);
+
+			// Xem ten cua tac gia:
+			cout<<" Ten tac gia cua quyen sach :";
+			puts(TacGia[i]);
+
+			// Xem nha xuat ban cua quyen sach:
+			cout<<" Nha xuat ban cua quyen sach :";
+			puts(NhaXB[i]);
+
+			// Xem nam xuat ban cua quyen sach:
+			cout<<" Nam xuat ban cua quyen sach :";
+			puts(NamXB[i]);
+
+			// Xem the loai cua quyen sach:
+			cout<<" The loai cua quyen sach :";
+			puts(TheLoai[i]);
+
+			// Xem gia cua quyen sach:
+			cout<<" Gia cua quyen sach :";
+			puts(GiaSach[i]);
+
+			// Xem so luong cua quyen sach:
+			cout<<" Ngay So luong cua quyen sach";
+			cout<< i + 1, SoLuong[i];
+
+			flag = 1;
+		}
+	}
+	if (flag != 1)
+		cout<<"\nKhong tim thay!!!";
+}
+/********************************************************************************************************************************/
+
+
+/******************************************************* Tìm sách theo tên sách *************************************************/
+// Nhận vào: tên sách
+// Trả về: Thông tin quyển sách cần tìm
+void TimTenSach(char Sach[25])
+{
+	int flag = 0;
+	for (int i = 0; i < s; i++)
+	{
+		if (strcmp(TenSach[i], Sach) == 0)
+		{
+			cout<<"\nThong tin cua quyen sach can tim la:";
+			// Xem ISBN cua sach:
+			cout<<"\n ISBN cua quyen sach :";
+			puts(ISBN[i]);
+
+			// Xem ten cua quyen sach:
+			cout<<" Ten cua quyen sach :";
+			puts(TenSach[i]);
+
+			// Xem ten cua tac gia:
+			cout<<" Ten tac gia cua quyen sach :";
+			puts(TacGia[i]);
+
+			// Xem nha xuat ban cua quyen sach:
+			cout<<" Nha xuat ban cua quyen sach :";
+			puts(NhaXB[i]);
+
+			// Xem nam xuat ban cua quyen sach:
+			cout<<" Nam xuat ban cua quyen sach :";
+			puts(NamXB[i]);
+
+			// Xem the loai cua quyen sach:
+			cout<<" The loai cua quyen sach :";
+			puts(TheLoai[i]);
+
+			// Xem gia cua quyen sach:
+			cout<<" Gia cua quyen sach :";
+			puts(GiaSach[i]);
+
+			// Xem so luong cua quyen sach:
+			cout<<" Ngay So luong cua quyen sach  ";
+			cout<< i + 1, SoLuong[i];
+
+			flag = 1;
+		}
+	}
+	if (flag != 1)
+		cout<<"\nKhong tim thay!!!";
+}
+/********************************************************************************************************************************/
+
+
+/******************************************* Thống kê số lượng sách trong thư viện***********************************************/
+// Nhận vào: Tham số s
+// Trả về: Số lượng sách trong thư viện
+int TKSachTV()
+{
+	int dem = 0;
+	for (int i = 0; i < s; i++)
+	{
+		dem = dem + SoLuong[i];
+	}
+	return dem;
+}
+/********************************************************************************************************************************/
+
+
+/****************************************** Thống kê số luọng sách theo thể loại *************************************************/
+// Nhận vào: Tham số s
+// Trả về: Số lượng sách theo từng thể loại
+void TKSachTL()
+{
+	int dem = 0;
+	for (int i = 0; i < s; i++)
+	{
+		dem = 0;
+		for (int j = 0; j < s; j++)
+		{
+			if (strcmp(TheLoai[i], TheLoai[j]) == 0)
+			{
+				if (i <= j)
+					dem = dem + SoLuong[j];
+				else
+					break;
+			}
+		}
+		if (dem != 0)
+			printf("The loai %s co so luong sach la %d\n"), TheLoai[i], dem;
+	}
+}
+/********************************************************************************************************************************/
+
+// Khai báo tĩnh số lượng sách và độc giả lớn nhất.
+#define MaxSach 10000
+#define MaxDG 1000
+
+// Khai báo thông tin mượn trả sách.
+char MSMuon[MaxDG][25];
+char ISBNMuon[MaxSach][30];
+
+char MStra[MaxDG][25];
+
+int ngaymuon[MaxSach];
+int thangmuon[MaxSach];
+int nammuon[MaxSach];
+
+int ngaytraDK[MaxSach];
+int thangtraDK[MaxSach];
+int namtraDK[MaxSach];
+
+int ngaytraTT[MaxSach];
+int thangtraTT[MaxSach];
+int namtraTT[MaxSach];
+
+
+
+int n; // Bien so luong phieu muon sach duoc lap 
+int h; // Bien so luong phieu tra sach duoc lap
+int demmuon = 0; // Bien dem so luong sach duoc muon
+int sl[MaxSach]; // Bien so luong sach duoc muon boi mot doc gia trong mot lan
+
+
+
+//------------------------------------------------ Hàm nhập thông tin cho phiếu mượn sách -------------------------------------------------
+/*
+Nhận vào: MSMuon[MaxDG][25];
+		  ISBNMuon[MaxSach][30];
+		  ngaymuon[MaxSach];
+		  thangmuon[MaxSach];
+		  nammuon[MaxSach];
+*/
+// Trả về: Thông tin phiếu mượn.
+
+void NhapPhieuMuon()
+{
+	while (1)
+	{
+		if (n >= MaxDG)
+			cout<<"Bo nho khong du. Vui long ngung nhap!!!";
+		else
+		while (n < MaxDG)
+		{
+			// Nhap ma doc gia:
+			fflush(stdin);
+			cout<<"\n Nhap ma doc gia muon sach: ";
+			gets(MSMuon[n]);
+
+			// Nhap ngay muon sach:
+			cout<<" Nhap thoi diem muon sach:\n";
+			cout<<"	Vui long nhap dung theo quy tac ngay thang nam!!!!\n";
+
+			cout<<" \tNhap ngay muon sach: ";
+			scanf("%d", &ngaymuon[n]);
+
+			cout<<" \tNhap thang muon sach: ";
+			scanf("%d", &thangmuon[n]);
+
+			cout<<" \tNhap nam muon sach: ";
+			scanf("%d", &nammuon[n]);
+
+			// Nhap ISBN danh sach cac sach ma doc gia muon:
+			cout<<" Nhap so luong sach doc gia muon: ";
+			scanf("%d", &sl[n]);
+
+			for (int j = 0; j < sl[n]; j++)
+			{
+				fflush(stdin);
+				cout<<" Nhap ISBN cua quyen sach thu: ";
+				cout<< j + 1;
+				gets(ISBNMuon[j]);
+				demmuon++;
+			}
+			n++;
+			break;
+		}
+		break;
+	}
+}
+//-------------------------------------------------------------------------------------------------------------------------------------
+
+//------------------------------------------------ Hàm nhập thông tin cho phiếu trả sách ---------------------------------------------
+//Nhận vào: MSMuon[MaxDG][25];
+// Trả về: Thông tin mã số độc giả mượn sách.
+
+void NhapPhieuTra()
+{
+	while (1)
+	{
+		if (h >= MaxSach)
+			cout<<"Bo nho khong du. Vui long ngung nhap!!!";
+		else
+		while (h < MaxSach)
+		{
+
+			// Nhap ma doc gia tra sach:
+			fflush(stdin);
+			cout<<"\n Nhap ma doc gia tra sach: ";
+			gets(MStra[h]);
+			
+			// Nhập thời điểm trả sách thực tế:
+			cout<<" Vui long nhap dung theo quy tac ngay thang nam. Cam on!!!!\n";
+
+			cout<<" Nhap ngay tra sach thuc te : ";
+			scanf("%d", &ngaytraTT[h]);
+			
+			cout<<" Nhap thang tra sach thuc te: ";
+			scanf("%d", &thangtraTT[h]);
+			
+			cout<<" Nhap nam tra sach thuc te: ";
+			scanf("%d", &namtraTT[h]);
+			
+			h++;
+			break;
+		}
+		break;
+	}
+}
+//-------------------------------------------------------------------------------------------------------------------------------------
+
+
+//......................................................Tinh thoi gian tra sach du kien..............................................
+// Nhan tham so: ngaymuon, thangmuon, nammuon
+// Tra ve gia tri cua ngaytraDK, thangtraDK, namtraDK
+void TraDuKien()
+{
+	//....................................... Xac dinh so ngay trong thang (SNTT) ..............................................
+	int SNTT;
+	switch (thangmuon[n-1])
+	{
+	case 1:
+	case 3:
+	case 5:
+	case 7:
+	case 8:
+	case 10:
+	case 12:
+		SNTT = 31;
+		break;
+	case 4:
+	case 6:
+	case 9:
+	case 11:
+		SNTT = 30;
+		break;
+	case 2:
+		if (nammuon[n-1] % 400 == 0)
+			SNTT = 29;
+		else
+			SNTT = 28;
+	}
+	//..................................................................................................................
+
+	//.............................................. Xac dinh ngay tra du kien .............................................
+	// Xu ly cac ngay thuong:
+	if (ngaymuon[n - 1] == SNTT)
+	{
+		ngaytraDK[n - 1] = 6;
+		thangtraDK[n - 1] = thangmuon[n - 1] + 1;
+		namtraDK[n - 1] = nammuon[n-1];
+	}
+	else
+	{
+		ngaytraDK[n - 1] = ngaymuon[n - 1] + 6;
+		if (ngaytraDK[n - 1] > SNTT)
+		{
+			ngaytraDK[n - 1] = ngaytraDK[n - 1] - SNTT;
+			thangtraDK[n - 1] = thangmuon[n - 1] + 1;
+
+			if (ngaytraDK[n - 1] == 0)
+			{
+				ngaytraDK[n - 1] = SNTT;
+				thangtraDK[n - 1] = thangmuon[n - 1];
+			}
+				
+		}
+		thangtraDK[n - 1] = thangmuon[n - 1];
+		namtraDK[n - 1] = nammuon[n - 1];
+	}
+
+	// Xu ly nhung ngay cuoi nam
+	if (thangtraDK[n - 1] > 12)
+	{
+		thangtraDK[n - 1] = 1;
+		namtraDK[n - 1] = nammuon[n - 1] + 1;
+	}
+}
+//........................................................................................................................................
+
+
+//-------------------------------------------- Xuat thong tin muon sach ------------------------------------------------------------------
+void XuatPhieuMuon()
+{
+
+	cout<<"\n***************************** Phieu muon sach *********************************\n\n";
+	// Xuat ma so doc gia muon sach:
+	cout<<" Ma so doc gia muon sach: ";
+	puts(MSMuon[n-1]);
+
+	// Xuat thoi diem muon sach:
+	cout<<" Thoi diem muon sach cua do gia ma so : ";
+	cout<< MSMuon[n-1], ngaymuon[n-1], thangmuon[n-1], nammuon[n-1];
+
+	// Xuat thoi diem tra sach du kien:
+	cout<<"\n Thoi diem tra sach du kien cua doc gia co ma so :";
+	cout<< MSMuon[n-1], ngaytraDK[n-1], thangtraDK[n-1], namtraDK[n-1];
+
+	// Xuat danh sach cac sach duoc muon:
+	cout<<"\n Danh sach ISBN cac sach duoc muon la:\n";
+	for (int j = 0; j < sl[n-1]; j++)
+	{
+		cout<<" \tISBN cua quyen sach thu ";
+		cout<< j + 1;
+		puts(ISBNMuon[j]);
+	}
+
+	// Xuat canh bao neu mat sach va tra sach tre:
+	cout<<"\n Luu y: ";
+	cout<<"\n Se phat 5000 dong/ngay neu tra sach qua han (Han muon sach la: 7 ngay)";
+	cout<<"\n Neu mat sach se phai boi thuong 200%% gia sach.";
+
+	cout<<"\n*******************************************************************************";
+}
+//-------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+//------------------------------------------ Tính khoảng cách giữa hai ngày -------------------------------------------
+//......................... Xac dinh so ngay trong thang ........................................................
+int SNTT(int thang, int nam)
+{
+	int SN;
+	switch (thang)
+	{
+	case 1:
+	case 3:
+	case 5:
+	case 7:
+	case 8:
+	case 10:
+	case 12:
+		SN = 31;
+		break;
+	case 4:
+	case 6:
+	case 9:
+	case 11:
+		SN = 30;
+		break;
+	case 2:
+		if (nam % 4 == 0 && nam % 100 != 0)
+			SN = 29;
+		else
+			SN = 28;
+	}
+	return SN;
+}
+//..................................................................................................................
+
+// Xac dinh so luong cac nam nhuan giua 1 nam bat ki va nam cong nguyen (nam 0):
+int namnhuan(int nam)
+{
+	int dem = 0;
+	for (int i = 0; i < nam; i++)
+	{
+		if (i % 4 == 0 && i % 100 != 0)
+			dem++;
+	}
+	return dem;
+}
+//..................................................................................................................
+
+// Xac dinh so luong cac thang co 30 ngay dung truoc mot thang bat ki trong 12 thang.
+int thang30(int thang, int nam)
+{
+	int dem = 0;
+	for (int i = 1; i < thang; i++)
+	{
+
+		if (SNTT(i, nam) == 30)
+			dem++;
+	}
+	return dem;
+}
+//..................................................................................................................
+
+// Xac dinh so luong cac thang co 31 ngay dung truoc mot thang bat ki trong 12 thang.
+int thang31(int thang, int nam)
+{
+	int dem = 0;
+	for (int i = 1; i < thang; i++)
+	{
+
+		if (SNTT(i, nam) == 31)
+			dem++;
+	}
+	return dem;
+}
+//..................................................................................................................
+
+
+//Tính khoảng cách một ngày dạng ngày, tháng, năm so với ngày, tháng, năm công nguyên. 
+int ChuyenDoi(int ngay, int thang, int nam)
+{
+	int hthang, hnam;
+
+	// Xac dinh so luong cac ngay giua 1 nam bat ki voi nam cong nguyen:
+	hnam = (nam - 1) * 365 + namnhuan(nam);
+
+	// Xac dinh so luong cac ngay giua 1 thang bat ki voi thang 0 co 0 ngay:
+	if (thang == 1)
+		hthang = 31;
+
+	if (thang == 3 || thang == 5 || thang == 7 || thang == 8 || thang == 10 || thang == 12)
+	{
+		if (nam % 4 == 0 && nam % 100 != 0)
+			hthang = (thang - 1) * 31 - thang30(thang, nam) - 2;
+		else
+			hthang = (thang - 1) * 31 - thang30(thang, nam) - 3;
+	}
+
+	if (thang == 2)
+	{
+		if (nam % 100 != 0 && nam % 4 == 0)
+			hthang = 29;
+		else
+			hthang = 28;
+	}
+	else
+	{
+		if (nam % 4 == 0 && nam % 100 != 0)
+			hthang = (thang - 1) * 30 + thang31(thang, nam) - 1;
+		else
+			hthang = (thang - 1) * 30 + thang31(thang, nam) - 2;
+	}
+	int CD = ngay + hthang + hnam;
+	return CD;
+}
+//..................................................................................................................
+//--------------------------------------------------------------------------------------------------------------------------
+
+//Tính tiền phải trả khi trả sách trễ hạn
+int TienTre(int ngaytraTT, int thangtraTT, int namtraTT, int ngaytraDK, int thangtraDK, int namtraDK)
+{
+	int Tien;
+	int KC = ChuyenDoi(ngaytraTT, thangtraTT, namtraTT) - ChuyenDoi(ngaytraDK, thangtraDK, namtraDK);
+	if (KC <= 0)
+		Tien = 0;
+	else
+		Tien = KC * 5000;
+	return Tien;
+}
+//..................................................................................................................
+
+
+
+//--------------------------------------------- Xuất thông tin trả sách --------------------------------------------------------
+void XuatPhieuTra()
+{
+	int flag = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (strcmp(MSMuon[i], MStra[h - 1]) == 0)
+		{
+			cout<<"\n***************************** Phieu tra sach *********************************\n\n";
+
+			// Xuat ma so doc gia tra sach:
+			cout<<" Ma so doc gia tra sach: ";
+			puts(MSMuon[i]);
+
+			// Xuat thoi diem muon sach:
+			cout<<" Thoi diem muon sach cua do gia ma so la: ";
+			cout<< MSMuon[i], ngaymuon[i], thangmuon[i], nammuon[i];
+
+			// Xuat thoi diem tra sach du kien:
+			cout<<"\n Thoi diem tra sach du kien cua doc gia co ma so :";
+			cout<< MSMuon[i], ngaytraDK[i], thangtraDK[i], namtraDK[i];
+
+
+			// Xuat thoi diem tra sach thuc te:
+			cout<<"\n Thoi diem tra sach thuc te cua doc gia co ma so: ";
+			cout<< MSMuon[i], ngaytraTT[i], thangtraTT[i], namtraTT[i];
+
+			// Xuat danh sach cac sach duoc muon:
+			cout<<"\n Danh sach ISBN cac sach duoc muon la:\n";
+			for (int j = 0; j < sl[i]; j++)
+			{
+				cout<<" \tISBN cua quyen sach thu: ";
+				cout<<j + 1;
+				puts(ISBNMuon[j]);
+			}
+
+			// Xuat so tien bi phat neu tra sach tre
+			cout<<" So tien phat khi tra sach tre la: ";
+			 TienTre(ngaytraTT[i], thangtraTT[i], namtraTT[i], ngaytraDK[i], thangtraDK[i], namtraDK[i]);
+
+			cout<<"\n*******************************************************************************";
+
+			flag = 1;
+			break;
+		}
+	}
+	if (flag == 0)
+		cout<<"Khong co thong tin doc gia tra sach!!!";
+}
+//-------------------------------------------------------------------------------------------------------------------------------------
+
+
+/*********************************************************** Lập phiếu mượn trả sách *************************************************/
+void LapPhieuMuonTra()
+{
+	while (1)
+	{
+		cout<<"\n\t------------------Menu lenh Lap phieu muon tra sach-----------------\n";
+		cout<<" \t\t30.Thoat lap phieu .\n";
+		cout<<" \t\t31.Lap phieu muon sach.\n";
+		cout<<" \t\t32.Lap phieu tra sach.\n";
+		cout<<"\n\t--------------------------------------------------------------------";
+
+		int chon;
+		cout<<"\n\nChon: ";
+		scanf("%d", &chon);
+
+		if (chon == 30)
+			break;
+
+		switch (chon)
+		{
+		case 31:
+			NhapPhieuMuon();
+			TraDuKien();
+			XuatPhieuMuon();
+			break;
+		case 32:
+			NhapPhieuTra();
+			TraDuKien();
+			XuatPhieuTra();
+			break;
+		default:
+			cout<<"Chuc nang khong ton tai. Vui long chon chuc nang khac!!!";
+			break;
+		}
+	}
+}
+/********************************************************************************************************************************/
+
+
+
+/*************************************** Thong ke doc gia tra sach tre han ****************************************/
+// Nhận vào: ngaytraTT; ngaytraDK; thangtraTT; thangtraDK; namtraTT; namtraDK[i];
+// Trả về : Số lượng độc giả trả sách trễ hạn
+int TKDGTreHan()
+{
+	int dem = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (ngaytraTT[i]>ngaytraDK[i] || thangtraTT[i] > thangtraDK[i] || namtraTT[i] > namtraDK[i])
+			dem++;
+	}
+	return dem;
+}
+/********************************************************************************************************************************/
+
+
+
+
+/*************************************** Thống kê số lượng sách được mượn ****************************************/
+// Trả về : Số lượng sách được mượn
+int TKSachMuon()
+{
+	return demmuon;
+}
+
+/********************************************************************************************************************************/
+// Khai báo tĩnh số lượng lớn nhất của độc giả:
+#define MaxDG 1000
+
+// Khởi tạo biến đếm số luọng độc giả:
+int m = 0;
+
+// Khởi tạo các mảng chứa thông tin quản lí sách:
+char MS[MaxDG][25];
+char Ten[MaxDG][25];
+char CMND[MaxDG][25];
+char Sinh[MaxDG][25];
+char Gioi[MaxDG][25];
+char Email[MaxDG][25];
+char DiaChi[MaxDG][25];
+
+int nam[MaxDG];
+int thang[MaxDG];
+int ngay[MaxDG];
+
+int ngayhet[MaxDG];
+int thanghet[MaxDG];
+int namhet[MaxDG];
+
+
+/********************************************** Hàm nhập thông tin ban đầu cho độc giả ******************************************************/
+	/*
+		Nhận vào: MS[MaxDG][25]; Ten[MaxDG][25]; CMND[MaxDG][25]; Sinh[MaxDG][25];
+								Gioi[MaxDG][25]; Email[MaxDG][25]; DiaChi[MaxDG][25]; 
+	*/
+	// Trả về: Thông tin ban đầu của độc giả.
+
+void NhapDG()
+{
+	while (1)
+	{
+		if (m >= MaxDG)
+			cout<<"Bo nho khong du. Vui long ngung cap nhat doc gia!!!";
+		else
+		while (m < MaxDG)
+		{
+
+			cout<<"\nThong tin doc gia thu ";
+			cout<< m + 1;
+			fflush(stdin);
+
+			// Nhap Ma so doc gia:
+			cout<<"\n Ma so doc gia thu: ";
+			gets(MS[m]);
+		
+
+			// Nhap Ten doc gia:
+			cout<<" Ten doc gia : ";
+			gets(Ten[m]);
+
+			// Nhap CMND doc gia:
+			cout<<" So CMND doc gia : ";
+			gets(CMND[m]);
+
+			// Nhap ngay, thang, nam sinh cua doc gia:
+			cout<<" Ngay thang nam sinh cua doc gia : ";
+			gets(Sinh[m]);
+
+			// Nhap gioi tinh cua doc gia:
+			cout<<" Gioi tinh doc gia : ";
+			gets(Gioi[m]);
+
+			// Nhap dia chi email doc gia:
+			cout<<" Dia chi email cua doc gia : ";
+			gets(Email[m]);
+
+			// Nhap Dia Chi cua doc gia:
+			cout<<" Dia chi cua doc gia : ";
+			gets(DiaChi[m]);
+
+			// Nhap ngay lap the cua doc gia:
+			cout<<" Nhap thoi gian lap the: ";
+			NgayLap();
+
+			// Tu dong nhap ngay het han the cua doc gia:
+			NgayHet();
+
+			m++;
+			break;
+		}
+		if (m >= 3)
+			break;
+	}
+}
+/********************************************************************************************************************************/
+
+//***************************************************** Hàm nhập thời gian lập thẻ *******************************************************
+// Nhận vào: Không nhận tham số đầu vào
+// Trả về: Ngày, tháng, năm lập thẻ mượn sách.
+
+void NgayLap()
+{
+	cout<<" \n  Vui long nhap dung theo quy tac ngay thang nam!!!!\n";
+
+	cout<<" \tNhap ngay lap the: ";
+	scanf("%d", &ngay[m]);
+
+	cout<<" \tNhap thang lap the: ";
+	scanf("%d", &thang[m]);
+
+	cout<<" \tNhap nam lap the: ";
+	scanf("%d", &nam[m]);
+
+
+}
+//**************************************************************************************************************************************
+
+
+//************************************************ Hàm xác định thời gian hết hạn của thẻ **********************************************
+// Nhận vào: Ngày, tháng, năm lập thẻ mượn sách: nam[MaxDG]; thang[MaxDG]; ngay[MaxDG];
+// Trả về: Ngày, tháng, năm hết hạn thẻ mượn sách: ngayhet[MaxDG]; thanghet[MaxDG]; namhet[MaxDG];
+
+void NgayHet()
+{
+	ngayhet[m] = ngay[m];
+	thanghet[m] = thang[m];
+	namhet[m] = nam[m] + 4;
+}
+//**************************************************************************************************************************************
+
+
+
+
+/********************************************** Hàm xem thông tin của độc giả ******************************************************/
+/*
+Nhận vào: MS[MaxDG][25]; Ten[MaxDG][25]; CMND[MaxDG][25]; Sinh[MaxDG][25];
+Gioi[MaxDG][25]; Email[MaxDG][25]; DiaChi[MaxDG][25];
+*/
+// Trả về: Thông tin của  tất cả các độc giả.
+void XemDG()
+{
+	if (m <= 0)
+	{
+		cout<<"Danh sach doc gia trong. Hay tien hanh cap nhat!!!";
+	}
+	else
+	{
+		for (int i = 0; i < m; i++)
+		{
+			cout<<"\nThong tin doc gia thu : " ;
+			cout<<i + 1;
+
+			// Xem ma so cua doc gia:
+			cout<<"\n Ma so doc gia :";
+			puts(MS[i]);
+
+			// Xem ten cua doc gia:
+			cout<<" Ten doc gia :";
+			puts(Ten[i]);
+
+			// Xem so CMND cua doc gia:
+			cout<<" So CMND doc gia :";
+			puts(CMND[i]);
+
+			// Xem ngay, thang, nam sinh cua doc gia:
+			cout<<" Ngay thang nam sinh cua doc gia :";
+			puts(Sinh[i]);
+
+			// Xem gioi tinh cua doc gia:
+			cout<<" Gioi tinh doc gia :";
+			puts(Gioi[i]);
+
+			// Xem Dia chi email cua doc gia:
+			cout<<" Dia chi email cua doc gia :";
+			puts(Email[i]);
+
+			// Xem Dia Chi cua doc gia:
+			cout<<" Dia chi cua doc gia :";
+			puts(DiaChi[i]);
+
+			// Xem ngay lap the cua doc gia:
+			cout<<" Thoi gian lap the cua doc gia thu: ";  
+			cout<<i + 1, ngay[i], thang[i], nam[i];
+
+			// Xem ngay het han the cua doc gia:
+			cout<<"\n Thoi gian het han the cua doc gia thu:";
+			cout<<i + 1;
+			cout<<ngayhet[i], thanghet[i], namhet[i];
+
+		}
+	}
+}
+/********************************************************************************************************************************/
+
+
+/********************************************** Hàm thêm độc giả ******************************************************/
+/*
+Nhận vào: MS[MaxDG][25]; Ten[MaxDG][25]; CMND[MaxDG][25]; Sinh[MaxDG][25];
+Gioi[MaxDG][25]; Email[MaxDG][25]; DiaChi[MaxDG][25];
+*/
+// Trả về: Thông tin ban đầu của độc giả.
+void ThemDG()
+{
+	while (1)
+	{
+		cout<<"\n\t------------------Menu lenh Cap nhat Thong tin doc gia--------------\n";
+		cout<<" \t\t120.Thoat cap nhat .\n";
+		cout<<" \t\t121.Cap nhat thong tin doc gia.\n";
+		cout<<"\n\t--------------------------------------------------------------------";
+
+		int chon;
+		cout<<"\n\nChon: ";
+		scanf("%d", &chon);
+		if (chon != 120 && chon != 121)
+			cout<<"Chuc nang khong ton tai. Vui long chon chuc nang khac!!!";
+
+		if (chon == 120)
+			break;
+
+		if (chon == 121)
+		{
+			if (m >= MaxDG)
+				cout<<"Bo nho khong du. Vui long ngung cap nhat doc gia!!!";
+			else
+			while (m<MaxDG)
+			{
+
+				cout<<"Thong tin doc gia thu: ";
+				cout<<m + 1;
+				fflush(stdin);
+
+				// Them Ma so doc gia:
+				cout<<" Ma so doc gia thu: ";
+				gets(MS[m]);
+
+				// Them Ten doc gia:
+				cout<<" Ten doc gia thu: ";
+				gets(Ten[m]);
+
+				// Them CMND doc gia:
+				cout<<" So CMND doc gia thu: ";
+				gets(CMND[m]);
+
+				// Them ngay, thang, nam sinh cua doc gia:
+				cout<<" Ngay thang nam sinh cua doc gia thu: ";
+				gets(Sinh[m]);
+
+				// Them gioi tinh cua doc gia:
+				cout<<" Gioi tinh doc gia thu: ";
+				gets(Gioi[m]);
+
+				// Them dia chi email doc gia:
+				cout<<" Dia chi email cua doc gia thu: ";
+				gets(Email[m]);
+
+				// Them Dia Chi cua doc gia:
+				cout<<" Dia chi cua doc gia thu: ";
+				gets(DiaChi[m]);
+
+				// Them ngay lap the cua doc gia:
+				cout<<" Nhap thoi gian lap the cua doc gia thu: ";
+				NgayLap();
+
+				// Tu dong them ngay het han the cua doc gia:
+				NgayHet();
+
+				m++;
+				break;
+			}
+		}
+	}
+}
+/********************************************************************************************************************************/
+
+
+/********************************************** Hàm sửa thông tin độc giả ******************************************************/
+// Nhận vào: Số thứ tự của độc giả cần chỉnh sửa (k)
+// Trả về: Thông tin của độc giả sau khi được chỉnh sửa.
+void SuaDG(int k)
+{
+
+	if (k >= 0 && k <= m)
+	{
+		cout<<"\n\t---------------Menu lenh con Chinh Sua Thong tin doc gia-------------\n";
+
+		cout<<" \t\t1311.Chinh sua ma so doc gia.\n";
+		cout<<" \t\t1312.Chinh sua ten doc gia.\n";
+		cout<<" \t\t1313.Chinh sua CMND cua gia.\n";
+		cout<<" \t\t1314.Chinh sua ngay, thang, nam sinh cua doc gia.\n";
+		cout<<" \t\t1315.Chinh sua gioi tinh cua doc gia.\n";
+		cout<<" \t\t1316.Chinh sua email cua doc gia.\n";
+		cout<<" \t\t1317.Chinh sua dia chi doc gia.\n";
+		cout<<" \t\t1318.Chinh sua thoi gian lap the cua doc gia.\n";
+
+		cout<<"\n\t--------------------------------------------------------------------";
+
+		int chon;
+		cout<<"\n\nChon muc can chinh sua cua doc gia thu %d trong menu lenh con: ", k;
+		scanf("%d", &chon);
+
+		if (chon == 1318)
+		{
+			int suangay, suathang, suanam;
+			
+			cout<<"Nhap noi dung can sua: \n";
+			cout<<"Ngay lap the: ";
+			scanf("%d", &suangay);
+			cout<<"Thang lap the: ";
+			scanf("%d", &suathang);
+			cout<<"Nam lap the: ";
+			scanf("%d", &suanam);
+
+			ngay[k] = suangay;
+			thang[k] = suathang;
+			nam[k] = suanam;
+			
+			ngayhet[k] = suangay;
+			thanghet[k] = suathang;
+			namhet[k] = suanam+4;
+
+		}
+		else
+		{
+			fflush(stdin);
+			char sua[25];
+			cout<<"Nhap noi dung chinh sua: ";
+			gets(sua);
+
+			switch (chon)
+			{
+			case 1311:
+				strcpy(MS[k - 1], sua);
+				break;
+			case 1312:
+				strcpy(Ten[k - 1], sua);
+				break;
+			case 1313:
+				strcpy(CMND[k - 1], sua);
+				break;
+			case 1314:
+				strcpy(Sinh[k - 1], sua);
+				break;
+			case 1315:
+				strcpy(Gioi[k - 1], sua);
+				break;
+			case 1316:
+				strcpy(Email[k - 1], sua);
+				break;
+			case 1317:
+				strcpy(DiaChi[k - 1], sua);
+				break;
+			default:
+				cout<<"Noi dung chinh sua khong ton tai vui long chon chuc nang khac!!!";
+				break;
+			}
+		}
+		
+	}
+	else
+		cout<<"Du lieu thong tin doc gia can chinh sua khong co!\n Vui long thoat va chon lai so thu tu cua doc gia!";
+}
+/********************************************************************************************************************************/
+
+
+
+/********************************************** Hàm xem thông tin độc giả sau khi sửa******************************************************/
+// Nhận vào: Số thứ tự của độc giả cần  xem chỉnh sửa (k)
+// Trả về: Thông tin của độc giả sau khi được chỉnh sửa.
+void XemSuaDG(int k)
+{
+	cout<<"\nThong tin doc gia  sau khi duoc chinh sua la: \n";
+	cout<< k;
+
+	// Xem ma so cua doc gia:
+	cout<<"\n Ma so doc gia ";
+	cout<<k;
+	puts(MS[k - 1]);
+
+	// Xem ten cua doc gia:
+	cout<<" Ten doc gia ";
+	cout<<k;
+	puts(Ten[k - 1]);
+
+	// Xem so CMND cua doc gia:
+	cout<<" So CMND doc gia ";
+	cout<<k;
+	puts(CMND[k - 1]);
+
+	// Xem ngay, thang, nam sinh cua doc gia:
+	cout<<" Ngay thang nam sinh cua doc gia ";
+	cout<<k;
+	puts(Sinh[k - 1]);
+
+	// Xem gioi tinh cua doc gia:
+	cout<<" Gioi tinh doc gia ";
+	cout<<k;
+	puts(Gioi[k - 1]);
+
+	// Xem Dia chi email cua doc gia:
+	cout<<" Dia chi email cua doc gia ";
+	cout<<k;
+	puts(Email[k - 1]);
+
+	// Xem Dia Chi cua doc gia:
+	cout<<" Dia chi cua doc gia ";
+	cout<<k;
+	puts(DiaChi[k - 1]);
+
+	// Xem ngay lap the cua doc gia:
+	cout<<" Thoi gian lap the cua doc gia thu: ";
+	cout<<k;
+	cout<< "la: ";
+	cout<< ngay[k];
+	cout<< thang[k];
+	cout<< nam[k];
+
+	// Xem ngay het han the cua doc gia:
+	cout<<" Thoi gian het han cua doc gia thu: ";
+	cout<<k;
+	cout<< "la: ";
+	cout<< ngayhet[k];
+	cout<< thanghet[k];
+	cout<< namhet[k];
+
+}
+/********************************************************************************************************************************/
+
+
+
+/**************************************************** Hàm menu lệnh sửa *********************************************************/
+// Nhận vào: Số thứ tự của độc giả cần chỉnh sửa (k)
+// Trả về: Quản lí quá trình chỉnh sửa
+void MenuSua(int k)
+{
+	while (1)
+	{
+		cout<<"\n\t-----------Menu lenh main Chinh Sua Thong tin doc gia--------------\n";
+
+		cout<<" \t\t130.Thoat chinh sua .\n";
+		cout<<" \t\t131.Tiep tuc chinh sua thong tin doc gia thu %d.\n", k;
+		cout<<" \t\t132.Xem thong tin doc gia sau khi chinh sua.\n";
+
+		cout<<"\n\t--------------------------------------------------------------------";
+
+		int chon;
+		cout<<"\n\nChon lenh trong menu main chinh sua: ";
+		scanf("%d", &chon);
+
+		if (chon == 130)
+			break;
+
+		switch (chon)
+		{
+		case 131:
+			SuaDG(k);
+			break;
+		case 132:
+			XemSuaDG(k);
+			break;
+		default:
+			cout<<"Chuc nang khong ton tai. Vui long chon lenh khac!!!";
+			break;
+		}
+	}
+}
+/********************************************************************************************************************************/
+
+
+/***************************************************** Hàm Xóa độc giả **********************************************************/
+/*
+Nhận vào: MS[MaxDG][25]; Ten[MaxDG][25]; CMND[MaxDG][25]; Sinh[MaxDG][25];
+Gioi[MaxDG][25]; Email[MaxDG][25]; DiaChi[MaxDG][25]; ngay[]; thang[]; nam[]; ngayhet[]; thanghet[]; namhet[].
+*/
+// Trả về: Xóa một độc giả trong thư viện
+void XoaDG(int d)
+{
+	int flag = 0;
+	if (d > 0 && d <= m)
+	{
+		for (int i = d-1; i < m - 1; i++)
+		{
+			// Tien hanh sao chep thong tin cua cac doc gia sau vao cac doc gia truoc tai vi tri doc gia bi xoa
+
+			strcpy(MS[i], MS[i + 1]);
+
+			strcpy(Ten[i], Ten[i + 1]);
+
+			strcpy(CMND[i], CMND[i + 1]);
+
+			strcpy(Sinh[i], Sinh[i + 1]);
+
+			strcpy(Gioi[i], Gioi[i + 1]);
+
+			strcpy(Email[i], Email[i + 1]);
+
+			strcpy(DiaChi[i], DiaChi[i + 1]);
+
+			ngay[i] = ngay[i + 1];
+			thang[i] = thang[i + 1];
+			nam[i] = nam[i + 1];
+
+			ngayhet[i] = ngayhet[i + 1];
+			thanghet[i] = thanghet[i + 1];
+			namhet[i] = namhet[i + 1];
+		}
+		m--;
+		flag = 1;
+	}
+	if (flag == 1)
+	{
+		cout<<"\n Danh sach doc gia sau khi duoc xoa la:\n";
+		XemDG();
+	}
+	else
+		cout<<"Khong the thuc hien xoa. Vui long chon doc gia can xoa khac!!!";
+}
+/**********************************************************************************************************************************************/
+
+
+/********************************************** Hàm tìm kiếm thông tin độc giả theo CMND ******************************************************/
+// Nhận vào: Số CMND của độc giả cần tìm: CM[25]
+// Trả về: Thông tin của độc giả cần tìm
+void TimCMND(char CM[25])
+{
+	int flag = 0;
+	for (int i = 0; i < m; i++)
+	{
+		if (strcmp(CMND[i], CM) == 0)
+		{
+			cout<<"\nThong tin cua doc gia can tim la:";
+			// Xem ma so cua doc gia:
+			cout<<"\n Ma so doc gia :";
+			puts(MS[i]);
+
+			// Xem ten cua doc gia:
+			cout<<" Ten doc gia :";
+			puts(Ten[i]);
+
+			// Xem so CMND cua doc gia:
+			cout<<" So CMND doc gia :";
+			puts(CMND[i]);
+
+			// Xem ngay, thang, nam sinh cua doc gia:
+			cout<<" Ngay thang nam sinh cua doc gia :";
+			puts(Sinh[i]);
+
+			// Xem gioi tinh cua doc gia:
+			cout<<" Gioi tinh doc gia :";
+			puts(Gioi[i]);
+
+			// Xem Dia chi email cua doc gia:
+			cout<<" Dia chi email cua doc gia :";
+			puts(Email[i]);
+
+			// Xem Dia Chi cua doc gia:
+			cout<<" Dia chi cua doc gia :";
+			puts(DiaChi[i]);
+
+			// Xem ngay lap the cua doc gia:
+			cout<<" Thoi gian lap the cua doc gia";
+			cout<< i + 1, ngay[i], thang[i], nam[i];
+
+			// Xem ngay het han the cua doc gia:
+			cout<<"\n Thoi gian het han the cua doc gia la: ";
+			cout<< i + 1, ngayhet[i], thanghet[i], namhet[i];
+			
+			flag = 1;
+		}
+	}
+	if (flag != 1)
+		cout<<"\nKhong tim thay!!!";
+}
+/***************************************************************************************************************************************/
+
+
+/****************************************** Hàm tìm kiếm thông tin độc giả theo họ và tên**********************************************/
+// Nhận vào: Họ và tên độc giả cần tìm kiếm.
+// Trả về: Thông tin của độc giả cần tìm kiếm.
+void TimTen(char HT[25])
+{
+	int flag = 0;
+	for (int i = 0; i < m; i++)
+	{
+		if (strcmp(Ten[i], HT) == 0)
+		{
+			
+			cout<<"\nThong tin cua doc gia can tim la:";
+			// Xem ma so cua doc gia:
+			cout<<"\n Ma so doc gia :";
+			puts(MS[i]);
+
+			// Xem ten cua doc gia:
+			cout<<" Ten doc gia :";
+			puts(Ten[i]);
+
+			// Xem so CMND cua doc gia:
+			cout<<" So CMND doc gia :";
+			puts(CMND[i]);
+
+			// Xem ngay, thang, nam sinh cua doc gia:
+			cout<<" Ngay thang nam sinh cua doc gia :";
+			puts(Sinh[i]);
+
+			// Xem gioi tinh cua doc gia:
+			cout<<" Gioi tinh doc gia :";
+			puts(Gioi[i]);
+
+			// Xem Dia chi email cua doc gia:
+			cout<<" Dia chi email cua doc gia :";
+			puts(Email[i]);
+
+			// Xem Dia Chi cua doc gia:
+			cout<<" Dia chi cua doc gia :";
+			puts(DiaChi[i]);
+
+			// Xem ngay lap the cua doc gia:
+			cout<<" Thoi gian lap the cua doc gia";
+			cout<<i + 1, ngay[i], thang[i], nam[i];
+
+			// Xem ngay het han the cua doc gia:
+			cout<<"\n Thoi gian het han the cua doc gia : ";
+			cout<< i + 1, ngayhet[i], thanghet[i], namhet[i];
+
+			flag = 1;
+		}
+	}
+	if (flag != 1)
+		cout<<"\nKhong tim thay!!!";
+}
+/********************************************************************************************************************************/
+
+
+
+/****************************************** Hàm thống kê số lượng độc giả trong thư viện **********************************************/
+// Nhận vào: Tham số m
+// Trả về: Số lượng độc giả trong thư viện
+int TKDGTV()
+{
+	int dem = 0;
+	for (int i = 0; i < m; i++)
+	{
+		dem++;
+	}
+	return dem;
+}
+/********************************************************************************************************************************/
+
+
+
+/****************************************** Hàm thống kê số lượng độc giả theo giới tính **********************************************/
+// Nhận vào: tham số m
+// Trả về: Số lượng độc giả theo giới tính trong thư viện
+void TKDGGT()
+{
+	int dem = 0;
+	for (int i = 0; i < m; i++)
+	{
+		dem = 0;
+		for (int j = 0; j < m; j++)
+		{
+			if (strcmp(Gioi[i], Gioi[j]) == 0)
+			{
+				if (i <= j)
+					dem++;
+				else
+					break;
+			}
+		}
+		if (dem != 0)
+			cout<<"Gioi tinh: ";
+			cout<<Gioi[i];
+			cout<<"co so luong doc gia la : ";
+			cout<<dem;
+	}
+
+}
+/********************************************************************************************************************************/
+
+int main()
+ {
+	cout<<"\n\t\t\tDo an 1 - Quan Ly Thu Vien";
+
+	//Nhập dữ liệu ban đầu cho chương trình:
+	cout<<"\nDe bat dau chuong trinh vui long nhap thong tin ban dau cho chuong trinh!!!";
+	cout<<"\n\nVui long nhap thong tin cho ba doc gia dau tien!!!";
+	NhapDG();
+	cout<<"\n";
+	cout<<"\n\nVui long nhap thong tin cho ba quyen sach dau tien!!!";
+	NhapSach();
+	cout<<"\n";
+	cout<<"\nChu y: De tranh chuong trinh bi loi. \nVui long nhap menu lenh chon chi bang cac ki tu so!!!";
+	
+	// Menu lệnh điều khiển chương trình.
+	while (1)
+	{
+		cout<<"\n--------------------------Menu lenh Quan li Thu vien----------------------------\n";
+		cout<<" \t0.Thoat .\n";
+
+		//Menu lệnh quản lí độc giả:
+		cout<<" \t11.Xem thong tin doc gia.\n";
+		cout<<" \t12.Cap nhat thong tin doc gia.\n";
+		cout<<" \t13.Chinh sua thong tin mot doc gia.\n";
+		cout<<" \t14.Xoa thong tin mot doc gia.\n";
+		cout<<" \t15.Tim doc gia theo CMND.\n";
+		cout<<" \t16.Tim doc gia theo Ho va Ten.\n";
+		cout<<" \t17.Thong ke so luong doc gia trong thu vien.\n";
+		cout<<" \t18.Thong ke so luong doc gia theo gioi tinh trong thu vien.\n";
+		cout<<" \t19.Thong ke so luong doc gia tre han.\n";
+		cout<<"\n";
+
+		//Menu lệnh quản lí sách:
+		cout<<" \t21.Xem thong tin sach.\n";
+		cout<<" \t22.Cap nhat thong tin sach.\n";
+		cout<<" \t23.Chinh sua thong tin sach.\n";
+		cout<<" \t24.Xoa thong tin mot quyen sach.\n";
+		cout<<" \t25.Tim sach theo ISBN.\n";
+		cout<<" \t26.Tim sach theo ten sach.\n";
+		cout<<" \t27.Thong ke so luong sach trong thu vien.\n";
+		cout<<" \t28.Thong ke so luong sach theo the loai trong thu vien.\n";
+		cout<<" \t29.Thong ke so luong sach duoc muon trong thu vien.\n";
+		cout<<"\n";
+
+		//Menu lệnh quản lí mượn trả sách:
+		cout<<" \t3.Lap phieu muon tra sach.\n";
+
+		cout<<"\n--------------------------------------------------------------------------------";
+
+		int chon;
+		cout<<"\n\nChon: ";
+		scanf("%d", &chon);
+
+		if (chon == 0)
+			break;
+	
+		switch (chon)
+		{
+		case 11:
+			XemDG();
+			cout<<"\n";
+			break;
+		case 12:
+			ThemDG();
+			cout<<"\n";
+			break;
+		case 13:
+			int k;
+			cout<<"Nhap so thu tu cua doc gia can chinh sua: ";
+			scanf("%d", &k);
+			MenuSua(k);
+			break;
+		case 14:
+			int d;
+			cout<<"Nhap so thu tu cua doc gia can xoa: ";
+			scanf("%d", &d);
+			XoaDG(d);
+			break;
+		case 15:
+			char CM[25];
+			cout<<"Nhap so CMND cua doc gia can tim: ";
+			fflush(stdin);
+			gets(CM);
+			TimCMND(CM);
+			break;
+		case 16:
+			char HT[25];
+			cout<<"Nhap Ho va Ten cua doc gia can tim: ";
+			fflush(stdin);
+			gets(HT);
+			TimTen(HT);
+			break;
+		case 17:
+			cout<<"So luong doc gia trong thu vien la: ";
+			cout<<TKDGTV();
+			break;
+		case 18:
+			TKDGGT();
+			cout<<"\n";
+			break;
+		case 19:
+			cout<<"So luong doc gia tra sach tre han la:";
+			 cout<<TKDGTreHan();
+			cout<<"\n";
+			break;
+
+		
+
+		
+		case 21:
+			XemSach();
+			cout<<"\n";
+			break;
+		case 22:
+			ThemSach();
+			cout<<"\n";
+			break;
+		case 24:
+			int ds;
+			cout<<"Nhap so thu tu cua quyen sach can xoa: ";
+			scanf("%d", &ds);
+			XoaSach(ds);
+			break;
+		case 23:
+			int h;
+			cout<<"Nhap so thu tu cua quyen sach can chinh sua: ";
+			scanf("%d", &h);
+			MenuSuaSach(h);
+			break;
+		case 25:
+			char IS[25];
+			cout<<"Nhap ISBN cua quyen sach can tim: ";
+			fflush(stdin);
+			gets(IS);
+			TimISBN(IS);
+			break;
+		case 26:
+			char Sach[25];
+			cout<<"Nhap Ten cua quyen sach can tim: ";
+			fflush(stdin);
+			gets(Sach);
+			TimTenSach(Sach);
+			break;
+		case 27:
+			cout<<"So luong sach trong thu vien la: ";
+			 cout<<TKSachTV();
+			break;
+		case 28:
+			TKSachTL();
+			cout<<"\n";
+			break;
+		case 29:
+			cout<<"So luong sach duoc muon la: ";
+			cout<<TKSachMuon();
+			cout<<"\n";
+			break;
+
+
+		case 3:
+			LapPhieuMuonTra();
+			cout<<"\n";
+			break;
+
+		default:
+			cout<<"Chuc nang khong ton tai. Vui long chon lai lenh khac!!!";
+			break;
+		}
+	}
+}
+	
